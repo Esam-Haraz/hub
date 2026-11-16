@@ -113,15 +113,15 @@ window.PAGE_I18N = {
       "I am at the beginning of my journey and state that openly—every project I publish is documented from start to finish, including data cleaning notes, queries, and reproducible steps.",
 
     fact1Val: "1",
-    fact1Lbl: "Desktop tool shipped (AutoDeploy v1.2.0)",
+    fact1Lbl: "Desktop tool shipped",
     fact2Val: "3",
     fact2Lbl: "Data case studies",
     fact3Val: "EN / AR",
     fact3Lbl: "Bilingual documentation & interfaces",
 
-    portraitAlt: "Portrait of Esam Haraz",
-    portraitCaptionName: "Esam Haraz",
-    portraitCaptionLoc: "Egypt",
+    visualStageAria: "Diagram connecting Windows utility tracks and data analysis pipelines",
+    visualCaptionName: "Esam Haraz",
+    visualCaptionLoc: "Egypt",
 
     /* Section 04: Contact ("Start a project") */
     contactTitle: "Start a project",
@@ -245,15 +245,15 @@ window.PAGE_I18N = {
       "أنا في بداية مشواري وأكتب ذلك بصراحة؛ كل مشروع أنشره موثق من الألف للياء، شاملاً خطوات تنظيف البيانات والاستعلامات وطريقة إعادة التشغيل.",
 
     fact1Val: "1",
-    fact1Lbl: "أداة سطح مكتب منشورة (AutoDeploy v1.2.0)",
+    fact1Lbl: "أداة سطح مكتب منشورة",
     fact2Val: "3",
     fact2Lbl: "دراسات حالة في تحليل البيانات",
     fact3Val: "عربي / EN",
     fact3Lbl: "توثيق وواجهات باللغتين",
 
-    portraitAlt: "صورة عصام حراز",
-    portraitCaptionName: "عصام حراز",
-    portraitCaptionLoc: "مصر",
+    visualStageAria: "رسم توضيحي يربط مسار أدوات ويندوز ومسار تحليل البيانات",
+    visualCaptionName: "عصام حراز",
+    visualCaptionLoc: "مصر",
 
     /* Section 04: Contact ("Start a project") */
     contactTitle: "ابدأ مشروعاً",
