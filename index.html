@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark" data-site="hub">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ==========================================================================
+       SINGLE SITE CONFIGURATION BLOCK (EDIT URLS, CONTACT & FLAGS HERE)
+       ========================================================================== -->
+  <script>
+    window.SITE_CONFIG = {
+      HUB_URL: "https://esam-haraz.github.io/hub/",
+      AUTODEPLOY_URL: "https://esam-haraz.github.io/AutoDeploy/",
+      DATA_URL: "https://esam-haraz.github.io/Data-Analysis/",
+      PORTFOLIO_URL: "https://esam-haraz.github.io/portfolio/",
+      EMAIL: "esamv20@gmail.com",
+      LINKEDIN: "https://www.linkedin.com/in/esam-haraz-459925402",
+      GITHUB: "https://github.com/Esam-Haraz",
+      WHATSAPP: "",       /* Leave empty "" to hide WhatsApp, or enter e.g. "201000000000" */
+      FORM_ENDPOINT: "",  /* Leave empty "" for mailto: behavior, or paste Formspree/API URL */
+      AVAILABLE: false,   /* Set to true to display the availability badge in the Hero */
+
+      /* Compatibility keys consumed by shared ds.js */
+      baseUrl: "https://esam-haraz.github.io/hub/",
+      currentSiteId: "hub",
+      hubContactUrl: "#contact",
+      email: "esamv20@gmail.com",
+      linkedinUrl: "https://www.linkedin.com/in/esam-haraz-459925402",
+      sitesGraph: [
+        { id: "hub",        labelEn: "Services Hub",  labelAr: "المركز الرئيسي", url: "./" },
+        { id: "autodeploy", labelEn: "AutoDeploy",    labelAr: "AutoDeploy",     url: "https://esam-haraz.github.io/AutoDeploy/" },
+        { id: "data",       labelEn: "Data Analysis", labelAr: "تحليل البيانات", url: "https://esam-haraz.github.io/Data-Analysis/" },
+        { id: "portfolio",  labelEn: "Portfolio",     labelAr: "معرض الأعمال",   url: "https://esam-haraz.github.io/portfolio/" }
+      ]
+    };
+
+    /* Respect saved theme preference before first paint (Dark is default for Hub) */
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem("esam_ds_theme_v1");
+        if (savedTheme === "light" || savedTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", savedTheme);
+        } else {
+          localStorage.setItem("esam_ds_theme_v1", "dark");
+        }
+      } catch (_) {}
+    })();
+  </script>
+
+  <!-- Primary SEO & Canonical Metadata -->
+  <title>Esam Haraz — Windows Desktop Tools &amp; Data Analysis</title>
+  <meta name="description" content="Services Hub of Esam Haraz in Egypt. Building standalone Windows desktop utilities in Python and PyQt6, and data analysis dashboards in SQL, Excel, and Power BI.">
+  <meta name="author" content="Esam Haraz">
+  <link rel="canonical" id="meta-canonical" href="https://esam-haraz.github.io/hub/">
+
+  <!-- Open Graph & Social Sharing Metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ar_EG">
+  <meta property="og:title" content="Esam Haraz — Windows Desktop Tools &amp; Data Analysis">
+  <meta property="og:description" content="Standalone Windows desktop utilities in Python/PyQt6 and documented data analysis case studies in SQL, Excel, and Power BI.">
+  <meta property="og:url" id="meta-og-url" content="https://esam-haraz.github.io/hub/">
+  <meta property="og:image" id="meta-og-image" content="https://esam-haraz.github.io/hub/assets/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Esam Haraz — Windows Desktop Tools &amp; Data Analysis">
+  <meta name="twitter:description" content="Standalone Windows desktop utilities in Python/PyQt6 and documented data analysis case studies in SQL, Excel, and Power BI.">
+  <meta name="twitter:image" id="meta-twitter-image" content="https://esam-haraz.github.io/hub/assets/og-cover.png">
+
+  <!-- Sync Canonical & OG Meta Tags from SITE_CONFIG.HUB_URL -->
+  <script>
+    (function () {
+      var base = (window.SITE_CONFIG && window.SITE_CONFIG.HUB_URL) || "https://esam-haraz.github.io/hub/";
+      if (!base.endsWith("/")) base += "/";
+      var canonical = document.getElementById("meta-canonical");
+      var ogUrl = document.getElementById("meta-og-url");
+      var ogImg = document.getElementById("meta-og-image");
+      var twImg = document.getElementById("meta-twitter-image");
+      if (canonical) canonical.setAttribute("href", base);
+      if (ogUrl) ogUrl.setAttribute("content", base);
+      if (ogImg) ogImg.setAttribute("content", base + "assets/og-cover.png");
+      if (twImg) twImg.setAttribute("content", base + "assets/og-cover.png");
+    })();
+  </script>
+
+  <!-- Inline Vector Favicon (Calm Cyan #62C8D3) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='12' fill='%23070C0E' stroke='%2362C8D3' stroke-width='3'/%3E%3Crect x='14' y='18' width='22' height='6' rx='3' fill='%2362C8D3'/%3E%3Crect x='14' y='29' width='36' height='6' rx='3' fill='%2362C8D3'/%3E%3Crect x='14' y='40' width='28' height='6' rx='3' fill='%2362C8D3'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts (Same Font Stack as ds.css) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Shared Design System v1.1 + Hub Extensions -->
+  <link rel="stylesheet" href="./assets/ds.css">
+  <link rel="stylesheet" href="./assets/hub.css">
+
+  <!-- Scripts (Deferred in Execution Order) -->
+  <script src="./assets/hub-i18n.js" defer></script>
+  <script src="./assets/ds.js" defer></script>
+  <script src="./assets/hub-bg.js" defer></script>
+  <script src="./assets/hub.js" defer></script>
+</head>
+<body>
+  <a href="#main-content" class="ds-skip-link" data-i18n="skipToMain">Skip to main content</a>
+
+  <!-- Circular Language Transition Curtain (Wipe Motion) -->
+  <div class="ds-curtain" id="ds-curtain" aria-hidden="true">
+    <div class="ds-curtain-layer ds-curtain-outer" id="ds-curtain-outer"></div>
+    <div class="ds-curtain-layer ds-curtain-inner" id="ds-curtain-inner">
+      <span class="ds-curtain-sub" id="ds-curtain-sub">SWITCHING LANGUAGE</span>
+      <span class="ds-curtain-label" id="ds-curtain-label">SERVICES HUB</span>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FIXED GLASS HEADER (TRANSPARENT AT TOP -> BLURRED AT SCROLL > 24PX)
+       ========================================================================== -->
+  <header class="hub-header" id="hub-header">
+    <a href="#hub-hero" class="hub-brand">
+      <span class="hub-monogram" aria-hidden="true">EH</span>
+      <span data-i18n="brandName">Esam Haraz</span>
+    </a>
+
+    <!-- Desktop Mini Node-Graph Site Switcher (Hydrated by ds.js) -->
+    <nav class="ds-mini-graph" id="ds-mini-graph" aria-label="Sites network navigation">
+      <a href="./" class="ds-mini-node is-current" aria-current="page">
+        <span class="ds-mini-dot" aria-hidden="true"></span>
+        <span>Services Hub</span>
+      </a>
+      <span class="ds-mini-edge" aria-hidden="true"></span>
+      <a href="https://esam-haraz.github.io/AutoDeploy/" class="ds-mini-node">
+        <span class="ds-mini-dot" aria-hidden="true"></span>
+        <span>AutoDeploy</span>
+      </a>
+      <span class="ds-mini-edge" aria-hidden="true"></span>
+      <a href="https://esam-haraz.github.io/Data-Analysis/" class="ds-mini-node">
+        <span class="ds-mini-dot" aria-hidden="true"></span>
+        <span>Data Analysis</span>
+      </a>
+      <span class="ds-mini-edge" aria-hidden="true"></span>
+      <a href="https://esam-haraz.github.io/portfolio/" class="ds-mini-node">
+        <span class="ds-mini-dot" aria-hidden="true"></span>
+        <span>Portfolio</span>
+      </a>
+    </nav>
+
+    <!-- Header Right Controls -->
+    <div class="hub-header-actions">
+      <!-- Desktop Theme & Language Toggles (>= 1100px) -->
+      <div class="hub-desktop-controls">
+        <button type="button" class="ds-icon-btn" id="ds-theme-toggle" aria-pressed="true" aria-label="Switch to light mode">
+          <span data-theme-label>Light</span>
+        </button>
+        <button type="button" class="ds-icon-btn" id="ds-lang-toggle" aria-label="التبديل إلى اللغة العربية">
+          عربي
+        </button>
+      </div>
+
+      <!-- Primary Pill CTA -->
+      <a href="#contact" class="hub-pill-cta" data-i18n="navCtaTalk">Let's talk</a>
+
+      <!-- Mobile Menu Button (< 1100px) -->
+      <button type="button"
+              class="hub-mobile-menu-btn"
+              id="hub-mobile-menu-btn"
+              aria-expanded="false"
+              aria-controls="hub-mobile-drawer"
+              data-i18n-aria="mobileMenuAria"
+              aria-label="Open navigation menu">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Panel (< 1100px: Index + Sites + Language + Theme) -->
+  <div class="hub-mobile-drawer" id="hub-mobile-drawer" role="dialog" aria-label="Navigation menu">
+    <div class="hub-drawer-group">
+      <span class="hub-drawer-label" data-i18n="drawerIndexLabel">Page sections</span>
+      <div class="hub-drawer-links">
+        <a href="#work" class="hub-drawer-link" data-index-target="work">
+          <span data-i18n="idxWork">Work</span>
+          <span class="ds-mono">01</span>
+        </a>
+        <a href="#services" class="hub-drawer-link" data-index-target="services">
+          <span data-i18n="idxServices">Services</span>
+          <span class="ds-mono">02</span>
+        </a>
+        <a href="#about" class="hub-drawer-link" data-index-target="about">
+          <span data-i18n="idxAbout">About</span>
+          <span class="ds-mono">03</span>
+        </a>
+        <a href="#contact" class="hub-drawer-link" data-index-target="contact">
+          <span data-i18n="idxContact">Contact</span>
+          <span class="ds-mono">04</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hub-drawer-group">
+      <span class="hub-drawer-label" data-i18n="drawerSitesLabel">Ecosystem sites</span>
+      <div class="hub-drawer-links">
+        <a href="./" class="hub-drawer-link" aria-current="page">
+          <span>Services Hub</span>
+          <span aria-hidden="true">●</span>
+        </a>
+        <a href="https://esam-haraz.github.io/AutoDeploy/" class="hub-drawer-link">
+          <span>AutoDeploy</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a href="https://esam-haraz.github.io/Data-Analysis/" class="hub-drawer-link">
+          <span>Data Analysis</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a href="https://esam-haraz.github.io/portfolio/" class="hub-drawer-link">
+          <span>Portfolio</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hub-drawer-controls">
+      <button type="button"
+              class="ds-icon-btn"
+              onclick="document.getElementById('ds-theme-toggle')?.click()">
+        <span data-theme-label>Light</span>
+      </button>
+      <button type="button"
+              class="ds-icon-btn"
+              onclick="document.getElementById('ds-lang-toggle')?.click()">
+        <span data-i18n="drawerLangText">عربي / EN</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Thin Top Scroll Progress Bar -->
+  <div class="ds-top-progress" aria-hidden="true">
+    <div class="ds-top-progress-fill"></div>
+  </div>
+
+  <!-- ==========================================================================
+       FULL-VIEWPORT HERO (100svh) WITH INTERACTIVE PIPELINE-BAR CANVAS
+       ========================================================================== -->
+  <section class="hub-hero" id="hub-hero" aria-labelledby="hub-hero-title">
+    <canvas class="hub-hero-canvas" id="hub-hero-canvas" aria-hidden="true"></canvas>
+
+    <div class="hub-hero-inner">
+      <h1 class="hub-hero-title hub-reveal" id="hub-hero-title" data-i18n="heroTitle">
+        Windows Desktop Tools &amp; Data Analysis
+      </h1>
+
+      <p class="hub-hero-lead" data-i18n="heroLead">
+        I build standalone Windows utilities in Python and PyQt6, and clean, query, and visualize datasets using SQL, Excel, and Power BI.
+      </p>
+
+      <div class="hub-hero-actions">
+        <a href="#contact" class="hub-pill-cta" data-i18n="heroCtaPrimary">Start a project</a>
+        <a href="#work" class="hub-text-link" data-i18n="heroCtaSecondary">See the work ↓</a>
+      </div>
+    </div>
+
+    <div class="hub-hero-footer">
+      <div class="ds-chips-row">
+        <span data-i18n="heroLocation">Egypt · EN / AR</span>
+        <span class="hub-availability-pill" id="hub-availability-pill" hidden>
+          <span class="hub-availability-dot" aria-hidden="true"></span>
+          <span data-i18n="heroAvailable">Available for projects</span>
+        </span>
+      </div>
+
+      <a href="#work" class="hub-scroll-cue" data-i18n="heroScroll">Scroll</a>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MAIN CONTENT SHELL (STICKY INDEX RAIL + 4 SECTIONS)
+       ========================================================================== -->
+  <main id="main-content" class="hub-shell">
+
+    <!-- Sticky Desktop Sidebar Index (Fades in after Hero leaves viewport) -->
+    <aside class="hub-index-rail" id="hub-index-rail" aria-label="Section index">
+      <span class="hub-index-heading" data-i18n="indexHeading">Index</span>
+      <ul class="hub-index-list">
+        <li>
+          <a href="#work" class="hub-index-link" data-index-target="work">
+            <span class="hub-index-num">01</span>
+            <span data-i18n="idxWork">Work</span>
+          </a>
+        </li>
+        <li>
+          <a href="#services" class="hub-index-link" data-index-target="services">
+            <span class="hub-index-num">02</span>
+            <span data-i18n="idxServices">Services</span>
+          </a>
+        </li>
+        <li>
+          <a href="#about" class="hub-index-link" data-index-target="about">
+            <span class="hub-index-num">03</span>
+            <span data-i18n="idxAbout">About</span>
+          </a>
+        </li>
+        <li>
+          <a href="#contact" class="hub-index-link" data-index-target="contact">
+            <span class="hub-index-num">04</span>
+            <span data-i18n="idxContact">Contact</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Sections Column -->
+    <div class="hub-sections-col">
+
+      <!-- ====================================================================
+           01. WORK SECTION (2 GROUPS, TILTED DEVICE FRAMES)
+           ==================================================================== -->
+      <section class="hub-section" id="work" aria-labelledby="work-heading">
+        <h2 class="hub-section-title hub-reveal" id="work-heading" data-i18n="workTitle">
+          Selected work
+        </h2>
+        <p class="hub-section-lead" data-i18n="workLead">
+          Documented tools and analytical case studies, each accompanied by source files, queries, and reproducible steps.
+        </p>
+
+        <!-- Group A: Windows Tools -->
+        <div class="hub-work-group">
+          <div class="hub-work-group-head">
+            <h3 class="hub-work-group-title" data-i18n="workGroupWinTitle">Windows tools</h3>
+            <span class="ds-mono" style="color:var(--ink-muted);" data-i18n="workGroupWinNote">Standalone executable utility</span>
+          </div>
+
+          <div class="hub-work-grid hub-work-grid--single">
+            <article class="hub-device-card" data-tilt="neg" style="--card-accent: var(--accent-deploy);">
+              <a href="https://esam-haraz.github.io/AutoDeploy/" class="hub-device-shell" aria-label="AutoDeploy v1.2.0">
+                <span class="hub-device-tab">
+                  <span class="hub-device-tab-dot" aria-hidden="true"></span>
+                  <span data-i18n="proj1Tab">AutoDeploy v1.2.0</span>
+                </span>
+                <div class="hub-device-frame">
+                  <div class="hub-device-screen">
+                    <img src="./assets/work/autodeploy.webp"
+                         data-asset-name="autodeploy.webp"
+                         data-i18n-alt="proj1ImgAlt"
+                         alt="AutoDeploy v1.2.0 desktop interface showing silent setup queue and post-install steps"
+                         width="1280"
+                         height="800"
+                         loading="lazy">
+                  </div>
+                </div>
+              </a>
+
+              <div class="hub-device-meta">
+                <span class="hub-device-cat" data-i18n="proj1Cat">Windows utility · Python · PyQt6</span>
+                <h4 class="hub-device-title" data-i18n="proj1Title">AutoDeploy — Post-Format Windows Setup Automation</h4>
+                <p class="hub-device-desc" data-i18n="proj1Desc">
+                  Automates post-format Windows setup with silent installations, post-install file/script steps, and a portable self-updating executable.
+                </p>
+                <a href="https://esam-haraz.github.io/AutoDeploy/" class="hub-case-link" data-i18n="proj1Link">Open project →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Group B: Data Analysis (3 Kaggle Practice Case Studies) -->
+        <div class="hub-work-group">
+          <div class="hub-work-group-head">
+            <h3 class="hub-work-group-title" data-i18n="workGroupDataTitle">Data analysis</h3>
+            <a href="https://esam-haraz.github.io/Data-Analysis/" class="hub-case-link" style="min-block-size:44px;" data-i18n="workAllDataLink">
+              All data projects →
+            </a>
+          </div>
+
+          <div class="hub-work-grid hub-work-grid--multi">
+            <!-- Study 1: Supply Chain -->
+            <article class="hub-device-card" data-tilt="pos" style="--card-accent: var(--accent-data);">
+              <a href="https://esam-haraz.github.io/Data-Analysis/assets/projects/supply-chain/" class="hub-device-shell" aria-label="Supply Chain & Shipment Deliveries Analysis">
+                <span class="hub-device-tab">
+                  <span class="hub-device-tab-dot" aria-hidden="true"></span>
+                  <span data-i18n="proj2Tab">Supply Chain</span>
+                </span>
+                <div class="hub-device-frame">
+                  <div class="hub-device-screen">
+                    <img src="./assets/work/supply-chain.webp"
+                         data-asset-name="supply-chain.webp"
+                         data-i18n-alt="proj2ImgAlt"
+                         alt="Supply Chain Excel dashboard showing delay rates by weather and delivery slicers"
+                         width="1280"
+                         height="800"
+                         loading="lazy">
+                  </div>
+                </div>
+              </a>
+
+              <div class="hub-device-meta">
+                <span class="hub-device-cat" data-i18n="proj2Cat">Logistics · Kaggle public dataset · Practice project</span>
+                <h4 class="hub-device-title" data-i18n="proj2Title">Supply Chain &amp; Shipment Deliveries Analysis</h4>
+                <p class="hub-device-desc" data-i18n="proj2Desc">
+                  Evaluates 25,000 shipments; weather is the strongest separator of delays (41.45% in stormy weather vs 16.02% in cold weather).
+                </p>
+                <a href="https://esam-haraz.github.io/Data-Analysis/assets/projects/supply-chain/" class="hub-case-link" data-i18n="caseStudyLink">Case study →</a>
+              </div>
+            </article>
+
+            <!-- Study 2: IBM HR Attrition -->
+            <article class="hub-device-card" data-tilt="neg" style="--card-accent: var(--accent-data);">
+              <a href="https://esam-haraz.github.io/Data-Analysis/assets/projects/hr-attrition/" class="hub-device-shell" aria-label="IBM HR Analytics: Employee Attrition & Performance">
+                <span class="hub-device-tab">
+                  <span class="hub-device-tab-dot" aria-hidden="true"></span>
+                  <span data-i18n="proj3Tab">IBM HR Attrition</span>
+                </span>
+                <div class="hub-device-frame">
+                  <div class="hub-device-screen">
+                    <img src="./assets/work/hr-attrition.webp"
+                         data-asset-name="hr-attrition.webp"
+                         data-i18n-alt="proj3ImgAlt"
+                         alt="IBM HR Analytics Power BI dashboard showing retention and attrition metrics"
+                         width="1280"
+                         height="800"
+                         loading="lazy">
+                  </div>
+                </div>
+              </a>
+
+              <div class="hub-device-meta">
+                <span class="hub-device-cat" data-i18n="proj3Cat">Human Resources · Kaggle public dataset · Practice project</span>
+                <h4 class="hub-device-title" data-i18n="proj3Title">IBM HR Analytics: Employee Attrition &amp; Performance</h4>
+                <p class="hub-device-desc" data-i18n="proj3Desc">
+                  Analyzes 1,470 employee records; employees working overtime show 31% attrition compared to 10% without overtime.
+                </p>
+                <a href="https://esam-haraz.github.io/Data-Analysis/assets/projects/hr-attrition/" class="hub-case-link" data-i18n="caseStudyLink">Case study →</a>
+              </div>
+            </article>
+
+            <!-- Study 3: Pizza Sales 2015 -->
+            <article class="hub-device-card" data-tilt="pos" style="--card-accent: var(--accent-data);">
+              <a href="https://esam-haraz.github.io/Data-Analysis/assets/projects/pizza-sales/" class="hub-device-shell" aria-label="Pizza Sales Performance & Operations Analytics (2015)">
+                <span class="hub-device-tab">
+                  <span class="hub-device-tab-dot" aria-hidden="true"></span>
+                  <span data-i18n="proj4Tab">Pizza Sales 2015</span>
+                </span>
+                <div class="hub-device-frame">
+                  <div class="hub-device-screen">
+                    <img src="./assets/work/pizza-sales.webp"
+                         data-asset-name="pizza-sales.webp"
+                         data-i18n-alt="proj4ImgAlt"
+                         alt="Pizza Sales 2015 Power BI dashboard showing revenue, orders, and category breakdowns"
+                         width="1280"
+                         height="800"
+                         loading="lazy">
+                  </div>
+                </div>
+              </a>
+
+              <div class="hub-device-meta">
+                <span class="hub-device-cat" data-i18n="proj4Cat">Retail · Kaggle public dataset · Practice project</span>
+                <h4 class="hub-device-title" data-i18n="proj4Title">Pizza Sales Performance &amp; Operations Analytics (2015)</h4>
+                <p class="hub-device-desc" data-i18n="proj4Desc">
+                  Covers 21,350 orders and 49,574 pizzas sold across 2015, generating $817.86K in total revenue at a $38.31 average order value.
+                </p>
+                <a href="https://esam-haraz.github.io/Data-Analysis/assets/projects/pizza-sales/" class="hub-case-link" data-i18n="caseStudyLink">Case study →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           02. SERVICES SECTION ("WHAT I CAN BUILD FOR YOU")
+           ==================================================================== -->
+      <section class="hub-section" id="services" aria-labelledby="services-heading">
+        <h2 class="hub-section-title hub-reveal" id="services-heading" data-i18n="servicesTitle">
+          What I can build for you
+        </h2>
+        <p class="hub-section-lead" data-i18n="servicesLead">
+          Focused desktop utilities and structured data workflows built around clear requirements.
+        </p>
+
+        <div class="hub-services-list">
+          <!-- Service 01: Windows Tools (Borrowed Deploy Accent) -->
+          <div class="hub-service-row" data-service-accent="deploy">
+            <span class="hub-service-num">01</span>
+            <h3 class="hub-service-title" data-i18n="srv1Title">Windows tools &amp; automation</h3>
+            <span class="hub-service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                <rect x="3" y="4" width="18" height="4" rx="2"/>
+                <rect x="3" y="10" width="13" height="4" rx="2"/>
+                <rect x="3" y="16" width="16" height="4" rx="2"/>
+                <circle cx="19" cy="12" r="2" fill="currentColor"/>
+              </svg>
+            </span>
+            <div class="hub-service-body">
+              <p class="hub-service-desc" data-i18n="srv1Desc">
+                Standalone desktop utilities packaged as single-file Windows executables with zero user setup, batch/registry handling, and bilingual interfaces.
+              </p>
+              <div class="ds-chips-row">
+                <span class="ds-chip">Python</span>
+                <span class="ds-chip">PyQt6</span>
+                <span class="ds-chip">Win32 API</span>
+                <span class="ds-chip">Standalone .EXE</span>
+              </div>
+            </div>
+            <a href="https://esam-haraz.github.io/AutoDeploy/"
+               class="hub-circle-btn"
+               data-i18n-aria="srv1LinkAria"
+               aria-label="Explore AutoDeploy Windows tool">
+              ↗
+            </a>
+          </div>
+
+          <!-- Service 02: Data Analysis (Borrowed Data Amber Accent) -->
+          <div class="hub-service-row" data-service-accent="data">
+            <span class="hub-service-num">02</span>
+            <h3 class="hub-service-title" data-i18n="srv2Title">Data analysis &amp; dashboards</h3>
+            <span class="hub-service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                <rect x="4" y="13" width="4" height="7" rx="2"/>
+                <rect x="10" y="9" width="4" height="11" rx="2"/>
+                <rect x="16" y="4" width="4" height="16" rx="2"/>
+              </svg>
+            </span>
+            <div class="hub-service-body">
+              <p class="hub-service-desc" data-i18n="srv2Desc">
+                Raw CSV cleaning, relational SQL querying, and interactive Excel or Power BI dashboards structured to answer concrete operational questions.
+              </p>
+              <div class="ds-chips-row">
+                <span class="ds-chip">SQL</span>
+                <span class="ds-chip">Excel</span>
+                <span class="ds-chip">Power Query</span>
+                <span class="ds-chip">Power BI (DAX)</span>
+              </div>
+            </div>
+            <a href="https://esam-haraz.github.io/Data-Analysis/"
+               class="hub-circle-btn"
+               data-i18n-aria="srv2LinkAria"
+               aria-label="Explore Data Analysis portfolio">
+              ↗
+            </a>
+          </div>
+
+          <!-- Service 03: Custom Tools on Request (Hub Cyan Accent -> Scrolls & Pre-selects Chip) -->
+          <div class="hub-service-row" data-service-accent="hub">
+            <span class="hub-service-num">03</span>
+            <h3 class="hub-service-title" data-i18n="srv3Title">Custom tools on request</h3>
+            <span class="hub-service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                <circle cx="6" cy="6" r="2.5"/>
+                <circle cx="18" cy="12" r="2.5"/>
+                <circle cx="6" cy="18" r="2.5"/>
+                <path d="M8.5 6H12v6h3.5M8.5 18H12v-6"/>
+              </svg>
+            </span>
+            <div class="hub-service-body">
+              <p class="hub-service-desc" data-i18n="srv3Desc">
+                Tailored Python utilities, file organizers, or reporting scripts built to automate repetitive desktop or spreadsheet tasks.
+              </p>
+              <div class="ds-chips-row">
+                <span class="ds-chip">Python Scripts</span>
+                <span class="ds-chip">File Automation</span>
+                <span class="ds-chip">EN / AR UI</span>
+              </div>
+            </div>
+            <a href="#contact"
+               class="hub-circle-btn"
+               data-select-scope="custom-tool"
+               data-i18n-aria="srv3LinkAria"
+               aria-label="Request a custom tool in the contact form">
+              ↓
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           03. ABOUT SECTION (HONEST INTRO, VERIFIED NUMBERS & PORTRAIT/MONOGRAM)
+           ==================================================================== -->
+      <section class="hub-section" id="about" aria-labelledby="about-heading">
+        <h2 class="hub-section-title hub-reveal" id="about-heading" data-i18n="aboutTitle">
+          About
+        </h2>
+
+        <div class="hub-about-grid">
+          <div class="hub-about-copy">
+            <p data-i18n="aboutPara1">
+              I am Esam Haraz, based in Egypt. I build Windows desktop tools with Python and PyQt6 packaged as standalone executables, and work on data analysis projects using SQL, Excel, and Power BI.
+            </p>
+            <p data-i18n="aboutPara2">
+              I am at the beginning of my journey and state that openly—every project I publish is documented from start to finish, including data cleaning notes, queries, and reproducible steps.
+            </p>
+
+            <div class="hub-facts-grid">
+              <div class="hub-fact-card">
+                <span class="hub-fact-val" data-i18n="fact1Val">1</span>
+                <span class="hub-fact-lbl" data-i18n="fact1Lbl">Desktop tool shipped (AutoDeploy v1.2.0)</span>
+              </div>
+              <div class="hub-fact-card">
+                <span class="hub-fact-val" data-i18n="fact2Val">3</span>
+                <span class="hub-fact-lbl" data-i18n="fact2Lbl">Data case studies</span>
+              </div>
+              <div class="hub-fact-card">
+                <span class="hub-fact-val" data-i18n="fact3Val">EN / AR</span>
+                <span class="hub-fact-lbl" data-i18n="fact3Lbl">Bilingual documentation &amp; interfaces</span>
+              </div>
+            </div>
+          </div>
+
+          <figure class="hub-portrait-card">
+            <div class="hub-portrait-media" id="hub-portrait-media">
+              <img src="./assets/portrait.webp"
+                   id="hub-portrait-img"
+                   data-i18n-alt="portraitAlt"
+                   alt="Portrait of Esam Haraz"
+                   width="400"
+                   height="500"
+                   loading="lazy">
+            </div>
+            <figcaption class="hub-portrait-caption">
+              <span data-i18n="portraitCaptionName">Esam Haraz</span>
+              <span data-i18n="portraitCaptionLoc">Egypt</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           04. CONTACT SECTION ("START A PROJECT" — CHANNELS + INTERACTIVE FORM)
+           ==================================================================== -->
+      <section class="hub-section" id="contact" aria-labelledby="contact-heading">
+        <div class="hub-contact-grid">
+          <!-- Left Column: Direct Channels -->
+          <div>
+            <h2 class="hub-section-title hub-reveal" id="contact-heading" data-i18n="contactTitle">
+              Start a project
+            </h2>
+            <p style="color:var(--ink-muted);" data-i18n="contactLead">
+              Share what you are looking to build or analyze, or reach out directly through any channel below.
+            </p>
+
+            <div class="hub-channels-list" id="hub-channels-list">
+              <a href="mailto:esamv20@gmail.com" class="hub-channel-row" id="hub-channel-email">
+                <span class="hub-channel-left">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2"/>
+                    <path d="M3 7l9 6 9-6"/>
+                  </svg>
+                  <span class="hub-channel-text" data-channel-value>esamv20@gmail.com</span>
+                </span>
+                <span class="ds-mono" aria-hidden="true">↗</span>
+              </a>
+
+              <a href="https://www.linkedin.com/in/esam-haraz-459925402"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="hub-channel-row"
+                 id="hub-channel-linkedin">
+                <span class="hub-channel-left">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="3"/>
+                    <path d="M8 11v5M8 8v.01M12 16v-5c0-1.1.9-2 2-2s2 .9 2 2v5"/>
+                  </svg>
+                  <span class="hub-channel-text" data-i18n="chLinkedin">LinkedIn</span>
+                </span>
+                <span class="ds-mono" aria-hidden="true">↗</span>
+              </a>
+
+              <a href="https://github.com/Esam-Haraz"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="hub-channel-row"
+                 id="hub-channel-github">
+                <span class="hub-channel-left">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>
+                  </svg>
+                  <span class="hub-channel-text" data-i18n="chGithub">GitHub</span>
+                </span>
+                <span class="ds-mono" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Project Form Card (No Budget Field) -->
+          <form class="hub-form-card" id="hub-contact-form" novalidate>
+            <!-- Honeypot Anti-Spam Field -->
+            <div class="hub-honeypot" aria-hidden="true">
+              <label for="hub-website-url">Website</label>
+              <input type="text" id="hub-website-url" name="website_url" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="hub-field">
+              <label class="hub-label" for="hub-field-name" data-i18n="formNameLabel">Your name</label>
+              <input class="hub-input" type="text" id="hub-field-name" name="name" required autocomplete="name">
+            </div>
+
+            <div class="hub-field">
+              <label class="hub-label" for="hub-field-email" data-i18n="formEmailLabel">Your email</label>
+              <input class="hub-input" type="email" id="hub-field-email" name="email" required autocomplete="email">
+            </div>
+
+            <div class="hub-field">
+              <span class="hub-label" id="hub-scope-group-label" data-i18n="formScopeLabel">What do you need?</span>
+              <div class="hub-scope-chips" role="group" aria-labelledby="hub-scope-group-label">
+                <button type="button" class="hub-scope-chip" data-scope="custom-tool" aria-pressed="false">
+                  <svg class="hub-scope-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>
+                  <span data-chip-label data-i18n="chipWinTool">Windows tool</span>
+                </button>
+                <button type="button" class="hub-scope-chip" data-scope="automation" aria-pressed="false">
+                  <svg class="hub-scope-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>
+                  <span data-chip-label data-i18n="chipAutoScript">Automation script</span>
+                </button>
+                <button type="button" class="hub-scope-chip" data-scope="data-analysis" aria-pressed="false">
+                  <svg class="hub-scope-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>
+                  <span data-chip-label data-i18n="chipDataDash">Data analysis &amp; dashboard</span>
+                </button>
+                <button type="button" class="hub-scope-chip" data-scope="other" aria-pressed="false">
+                  <svg class="hub-scope-tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>
+                  <span data-chip-label data-i18n="chipOther">Something else</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="hub-field">
+              <label class="hub-label" for="hub-field-desc" data-i18n="formDescLabel">Project description</label>
+              <textarea class="hub-textarea" id="hub-field-desc" name="description" required></textarea>
+            </div>
+
+            <div class="hub-form-actions">
+              <button type="submit" class="ds-btn ds-btn-primary" data-i18n="formSubmitBtn">Send message</button>
+              <button type="button" class="ds-btn ds-btn-secondary" id="hub-copy-msg-btn" data-i18n="formCopyBtn">Copy message</button>
+            </div>
+
+            <div class="hub-form-status" id="hub-form-status" role="status" aria-live="polite">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>
+              <span id="hub-form-status-text"></span>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="ds-footer">
+    <div class="ds-container">
+      <div class="ds-footer-grid">
+        <div>
+          <strong style="font-family: var(--font-display); font-size: 1.05rem;" data-i18n="brandName">Esam Haraz</strong>
+          <p style="font-size: var(--text-sm); color: var(--ink-muted); margin-block-start: var(--space-1);" data-i18n="footerTagline">
+            Services Hub · Windows Desktop Tools &amp; Data Analysis
+          </p>
+        </div>
+
+        <div class="ds-footer-links">
+          <a href="https://esam-haraz.github.io/AutoDeploy/" class="ds-btn ds-btn-secondary">AutoDeploy ↗</a>
+          <a href="https://esam-haraz.github.io/Data-Analysis/" class="ds-btn ds-btn-secondary">Data Analysis ↗</a>
+          <a href="https://github.com/Esam-Haraz" target="_blank" rel="noopener noreferrer" class="ds-btn ds-btn-secondary">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/esam-haraz-459925402" target="_blank" rel="noopener noreferrer" class="ds-btn ds-btn-secondary">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <div class="ds-footer-bottom">
+        <span data-i18n="footerCopy">© 2026 Esam Haraz.</span>
+        <a href="mailto:esamv20@gmail.com">esamv20@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
