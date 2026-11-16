@@ -1,5 +1,5 @@
 /* ============================================================================
-   SERVICES HUB — INTERACTIVE ENGINE (REVEAL, INDEX SCROLLSPY, HEADER & FORM)
+   SERVICES HUB — INTERACTIVE ENGINE (REVEAL, STAGGER, INDEX SCROLLSPY & FORM)
    Author: Esam Haraz
    Path: hub/assets/hub.js
    ============================================================================ */
@@ -12,32 +12,56 @@
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* --------------------------------------------------------------------------
-     1. READING-DIRECTION WIPE REVEAL FOR H1 & H2 (ONCE PER ELEMENT)
+     1. READING-DIRECTION WIPE REVEAL (H1/H2) & STAGGERED FILL ENTRANCE
      -------------------------------------------------------------------------- */
-  function setupHeadingReveal() {
+  function setupRevealAndStagger() {
     const headings = Array.from(document.querySelectorAll(".hub-reveal"));
-    if (headings.length === 0) return;
+    const staggerTargets = Array.from(
+      document.querySelectorAll(
+        ".hub-device-card, .hub-service-row, .hub-fact-card, .hub-visual-card, .hub-channel-row, .hub-form-card"
+      )
+    );
 
+    staggerTargets.forEach((el) => el.classList.add("hub-stagger"));
     document.documentElement.classList.add("hub-reveal-ready");
 
     if (REDUCED_MOTION || typeof IntersectionObserver === "undefined") {
       headings.forEach((h) => h.classList.add("is-revealed"));
+      staggerTargets.forEach((el) => el.classList.add("is-revealed"));
       return;
     }
 
-    const observer = new IntersectionObserver(
+    const headingObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-revealed");
-            observer.unobserve(entry.target);
+            headingObserver.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -30px 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -24px 0px" }
     );
 
-    headings.forEach((h) => observer.observe(h));
+    headings.forEach((h) => headingObserver.observe(h));
+
+    const staggerObserver = new IntersectionObserver(
+      (entries) => {
+        let batchIndex = 0;
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const delayMs = Math.min(batchIndex * 70, 280);
+            entry.target.style.setProperty("--stagger-delay", `${delayMs}ms`);
+            entry.target.classList.add("is-revealed");
+            staggerObserver.unobserve(entry.target);
+            batchIndex += 1;
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -20px 0px" }
+    );
+
+    staggerTargets.forEach((el) => staggerObserver.observe(el));
   }
 
   /* --------------------------------------------------------------------------
@@ -90,7 +114,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     3. STICKY SIDEBAR INDEX (APPEARS AFTER HERO EXITS) & INTERSECTION SCROLLSPY
+     3. PINNED SIDEBAR INDEX (APPEARS AFTER HERO EXITS) & INTERSECTION SCROLLSPY
      -------------------------------------------------------------------------- */
   function setupIndexRailAndScrollspy() {
     const hero = document.getElementById("hub-hero");
@@ -99,19 +123,20 @@
     const sectionIds = ["work", "services", "about", "contact"];
     const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
 
-    if (hero && indexRail && typeof IntersectionObserver !== "undefined") {
-      const heroObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            indexRail.classList.toggle("is-visible", !entry.isIntersecting);
-          });
-        },
-        { threshold: 0.12 }
-      );
-      heroObserver.observe(hero);
-    } else if (indexRail) {
-      indexRail.classList.add("is-visible");
+    function syncIndexVisibility() {
+      if (!indexRail) return;
+      if (!hero) {
+        indexRail.classList.add("is-visible");
+        return;
+      }
+      const heroRect = hero.getBoundingClientRect();
+      const pastHero = heroRect.bottom <= Math.max(window.innerHeight * 0.22, 120);
+      indexRail.classList.toggle("is-visible", pastHero);
     }
+
+    window.addEventListener("scroll", syncIndexVisibility, { passive: true });
+    window.addEventListener("resize", syncIndexVisibility, { passive: true });
+    syncIndexVisibility();
 
     function setActiveSection(activeId) {
       indexLinks.forEach((link) => {
@@ -148,7 +173,7 @@
           }
         },
         {
-          rootMargin: "-18% 0px -45% 0px",
+          rootMargin: "-16% 0px -42% 0px",
           threshold: [0, 0.15, 0.35, 0.6]
         }
       );
@@ -158,7 +183,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     4. CONFIG HYDRATION (AVAILABLE PILL, OPTIONAL WHATSAPP & PORTRAIT FALLBACK)
+     4. CONFIG HYDRATION (AVAILABLE PILL & OPTIONAL WHATSAPP)
      -------------------------------------------------------------------------- */
   function hydrateConfigFeatures() {
     const availPill = document.getElementById("hub-availability-pill");
@@ -192,7 +217,7 @@
       waAnchor.href = `https://wa.me/${cleanWa}`;
       waAnchor.target = "_blank";
       waAnchor.rel = "noopener noreferrer";
-      waAnchor.className = "hub-channel-row";
+      waAnchor.className = "hub-channel-row hub-stagger is-revealed";
       waAnchor.innerHTML = `
         <span class="hub-channel-left">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -203,28 +228,6 @@
         <span class="ds-mono" aria-hidden="true">↗</span>
       `;
       channelsList.appendChild(waAnchor);
-    }
-
-    // Portrait fallback to clean "EH" monogram card if assets/portrait.webp is missing
-    const portraitImg = document.getElementById("hub-portrait-img");
-    const portraitMedia = document.getElementById("hub-portrait-media");
-    if (portraitImg && portraitMedia) {
-      function showMonogram() {
-        if (portraitMedia.dataset.fallbackApplied === "1") return;
-        portraitMedia.dataset.fallbackApplied = "1";
-        portraitMedia.innerHTML = `
-          <div class="hub-portrait-monogram" role="img" aria-label="Esam Haraz (EH)">
-            <span class="hub-portrait-initials">EH</span>
-            <span class="ds-mono" style="font-size:0.75rem;color:var(--ink-muted);">portrait.webp</span>
-          </div>
-        `;
-      }
-
-      if (portraitImg.complete && portraitImg.naturalWidth === 0) {
-        showMonogram();
-      } else {
-        portraitImg.addEventListener("error", showMonogram, { once: true });
-      }
     }
   }
 
@@ -410,7 +413,7 @@
      6. BOOTSTRAP
      -------------------------------------------------------------------------- */
   function initHub() {
-    setupHeadingReveal();
+    setupRevealAndStagger();
     setupHeaderAndDrawer();
     setupIndexRailAndScrollspy();
     hydrateConfigFeatures();
