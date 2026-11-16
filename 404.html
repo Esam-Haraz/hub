@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark" data-site="hub">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Single Site Configuration Block -->
+  <script>
+    window.SITE_CONFIG = {
+      HUB_URL: "https://esam-haraz.github.io/hub/",
+      AUTODEPLOY_URL: "https://esam-haraz.github.io/AutoDeploy/",
+      DATA_URL: "https://esam-haraz.github.io/Data-Analysis/",
+      PORTFOLIO_URL: "https://esam-haraz.github.io/portfolio/",
+      EMAIL: "esamv20@gmail.com",
+      baseUrl: "https://esam-haraz.github.io/hub/",
+      currentSiteId: "hub",
+      hubContactUrl: "./#contact",
+      email: "esamv20@gmail.com",
+      sitesGraph: [
+        { id: "hub",        labelEn: "Services Hub",  labelAr: "المركز الرئيسي", url: "./" },
+        { id: "autodeploy", labelEn: "AutoDeploy",    labelAr: "AutoDeploy",     url: "https://esam-haraz.github.io/AutoDeploy/" },
+        { id: "data",       labelEn: "Data Analysis", labelAr: "تحليل البيانات", url: "https://esam-haraz.github.io/Data-Analysis/" },
+        { id: "portfolio",  labelEn: "Portfolio",     labelAr: "معرض الأعمال",   url: "https://esam-haraz.github.io/portfolio/" }
+      ]
+    };
+
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem("esam_ds_theme_v1");
+        if (savedTheme === "light" || savedTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", savedTheme);
+        } else {
+          localStorage.setItem("esam_ds_theme_v1", "dark");
+        }
+      } catch (_) {}
+    })();
+  </script>
+
+  <title>404 — Page Not Found | Esam Haraz</title>
+  <meta name="robots" content="noindex">
+
+  <!-- Inline Vector Favicon (Calm Cyan #62C8D3) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='12' fill='%23070C0E' stroke='%2362C8D3' stroke-width='3'/%3E%3Crect x='14' y='18' width='22' height='6' rx='3' fill='%2362C8D3'/%3E%3Crect x='14' y='29' width='36' height='6' rx='3' fill='%2362C8D3'/%3E%3Crect x='14' y='40' width='28' height='6' rx='3' fill='%2362C8D3'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Shared Design System v1.1 + Hub Tokens -->
+  <link rel="stylesheet" href="./assets/ds.css">
+  <link rel="stylesheet" href="./assets/hub.css">
+
+  <!-- Bilingual Dictionary & Shared Engine -->
+  <script>
+    window.PAGE_I18N = {
+      en: {
+        skipToMain: "Skip to main content",
+        brandName: "Esam Haraz",
+        errTitle: "Page not found (404)",
+        errDesc: "The requested page does not exist in the Services Hub. You can return to the main page or explore AutoDeploy and Data Analysis directly.",
+        btnHome: "← Back to Services Hub",
+        btnDeploy: "AutoDeploy ↗",
+        btnData: "Data Analysis ↗",
+        footerCopy: "© 2026 Esam Haraz."
+      },
+      ar: {
+        skipToMain: "تخطي إلى المحتوى الرئيسي",
+        brandName: "عصام حراز",
+        errTitle: "الصفحة غير موجودة (404)",
+        errDesc: "المسار المطلوب غير موجود في المركز الرئيسي. يمكنك العودة إلى الصفحة الرئيسية أو استعراض AutoDeploy وتحليل البيانات مباشرة.",
+        btnHome: "→ العودة إلى المركز الرئيسي",
+        btnDeploy: "AutoDeploy ↗",
+        btnData: "تحليل البيانات ↗",
+        footerCopy: "© 2026 عصام حراز."
+      }
+    };
+  </script>
+  <script src="./assets/ds.js" defer></script>
+</head>
+<body>
+  <a href="#main-content" class="ds-skip-link" data-i18n="skipToMain">Skip to main content</a>
+
+  <!-- Circular Language Transition Curtain -->
+  <div class="ds-curtain" id="ds-curtain" aria-hidden="true">
+    <div class="ds-curtain-layer ds-curtain-outer" id="ds-curtain-outer"></div>
+    <div class="ds-curtain-layer ds-curtain-inner" id="ds-curtain-inner">
+      <span class="ds-curtain-sub" id="ds-curtain-sub">SWITCHING LANGUAGE</span>
+      <span class="ds-curtain-label" id="ds-curtain-label">SERVICES HUB</span>
+    </div>
+  </div>
+
+  <!-- Site Header -->
+  <header class="ds-header">
+    <a href="./" class="hub-brand">
+      <span class="hub-monogram" aria-hidden="true">EH</span>
+      <span data-i18n="brandName">Esam Haraz</span>
+    </a>
+
+    <nav class="ds-mini-graph" id="ds-mini-graph" aria-label="Sites network navigation">
+      <a href="./" class="ds-mini-node is-current" aria-current="page">
+        <span class="ds-mini-dot" aria-hidden="true"></span>
+        <span>Services Hub</span>
+      </a>
+      <span class="ds-mini-edge" aria-hidden="true"></span>
+      <a href="https://esam-haraz.github.io/AutoDeploy/" class="ds-mini-node">
+        <span class="ds-mini-dot" aria-hidden="true"></span>
+        <span>AutoDeploy</span>
+      </a>
+      <span class="ds-mini-edge" aria-hidden="true"></span>
+      <a href="https://esam-haraz.github.io/Data-Analysis/" class="ds-mini-node">
+        <span class="ds-mini-dot" aria-hidden="true"></span>
+        <span>Data Analysis</span>
+      </a>
+      <span class="ds-mini-edge" aria-hidden="true"></span>
+      <a href="https://esam-haraz.github.io/portfolio/" class="ds-mini-node">
+        <span class="ds-mini-dot" aria-hidden="true"></span>
+        <span>Portfolio</span>
+      </a>
+    </nav>
+
+    <div class="ds-header-controls">
+      <button type="button" class="ds-icon-btn" id="ds-theme-toggle" aria-pressed="true" aria-label="Switch to light mode">
+        <span data-theme-label>Light</span>
+      </button>
+      <button type="button" class="ds-icon-btn" id="ds-lang-toggle" aria-label="التبديل إلى اللغة العربية">
+        عربي
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content" class="ds-container">
+    <section class="ds-section" style="border-block-end:none;" aria-labelledby="err-title">
+      <div class="ds-node">
+        <div class="ds-node-header">
+          <span>[HTTP 404 // ROUTE NOT FOUND]</span>
+          <span>SERVICES HUB</span>
+        </div>
+        <div class="ds-node-body" style="display:flex;flex-direction:column;gap:var(--space-4);">
+          <h1 id="err-title" style="font-size:var(--text-hero);line-height:1.15;" data-i18n="errTitle">
+            Page not found (404)
+          </h1>
+          <p class="ds-section-desc" data-i18n="errDesc">
+            The requested page does not exist in the Services Hub. You can return to the main page or explore AutoDeploy and Data Analysis directly.
+          </p>
+          <div class="ds-chips-row">
+            <a href="./" class="hub-pill-cta" data-i18n="btnHome">← Back to Services Hub</a>
+            <a href="https://esam-haraz.github.io/AutoDeploy/" class="ds-btn ds-btn-secondary" data-i18n="btnDeploy">AutoDeploy ↗</a>
+            <a href="https://esam-haraz.github.io/Data-Analysis/" class="ds-btn ds-btn-secondary" data-i18n="btnData">Data Analysis ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ds-footer">
+    <div class="ds-container">
+      <div class="ds-footer-bottom" style="padding-block-start:0;border-block-start:none;">
+        <span data-i18n="footerCopy">© 2026 Esam Haraz.</span>
+        <a href="mailto:esamv20@gmail.com">esamv20@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
