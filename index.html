@@ -10,6 +10,7 @@
   <script>
     window.SITE_CONFIG = {
       HUB_URL: "https://esam-haraz.github.io/hub/",
+      DESKTOP_TOOLS_URL: "https://esam-haraz.github.io/Desktop-Tools/",
       AUTODEPLOY_URL: "https://esam-haraz.github.io/AutoDeploy/",
       DATA_URL: "https://esam-haraz.github.io/Data-Analysis/",
       PORTFOLIO_URL: "https://esam-haraz.github.io/portfolio/",
@@ -17,7 +18,7 @@
       LINKEDIN: "https://www.linkedin.com/in/esam-haraz-459925402",
       GITHUB: "https://github.com/Esam-Haraz",
       WHATSAPP: "",       /* Leave empty "" to hide WhatsApp, or enter e.g. "201000000000" */
-      FORM_ENDPOINT: "https://formspree.io/f/xljbjkkw", /* Leave empty "" for mailto: behavior, or paste Formspree/API URL */
+      FORM_ENDPOINT: "https://formspree.io/f/xljbjkkw",
       AVAILABLE: false,   /* Set to true to display the availability badge in the Hero */
 
       /* Compatibility keys consumed by shared ds.js */
@@ -27,10 +28,10 @@
       email: "esamv20@gmail.com",
       linkedinUrl: "https://www.linkedin.com/in/esam-haraz-459925402",
       sitesGraph: [
-        { id: "hub",        labelEn: "Services Hub",  labelAr: "المركز الرئيسي", url: "./" },
-        { id: "autodeploy", labelEn: "AutoDeploy",    labelAr: "AutoDeploy",     url: "https://esam-haraz.github.io/AutoDeploy/" },
-        { id: "data",       labelEn: "Data Analysis", labelAr: "تحليل البيانات", url: "https://esam-haraz.github.io/Data-Analysis/" },
-        { id: "portfolio",  labelEn: "Portfolio",     labelAr: "معرض الأعمال",   url: "https://esam-haraz.github.io/portfolio/" }
+        { id: "hub",           labelEn: "Services Hub",  labelAr: "المركز الرئيسي",   url: "./" },
+        { id: "desktop-tools", labelEn: "Desktop Tools", labelAr: "أدوات سطح المكتب", url: "https://esam-haraz.github.io/Desktop-Tools/" },
+        { id: "data",          labelEn: "Data Analysis", labelAr: "تحليل البيانات",   url: "https://esam-haraz.github.io/Data-Analysis/" },
+        { id: "portfolio",     labelEn: "Portfolio",     labelAr: "معرض الأعمال",     url: "https://esam-haraz.github.io/portfolio/" }
       ]
     };
 
@@ -67,22 +68,6 @@
   <meta name="twitter:title" content="Esam Haraz — Windows Desktop Tools &amp; Data Analysis">
   <meta name="twitter:description" content="Standalone Windows desktop utilities in Python/PyQt6 and documented data analysis case studies in SQL, Excel, and Power BI.">
   <meta name="twitter:image" id="meta-twitter-image" content="https://esam-haraz.github.io/hub/assets/og-cover.png?v=2">
-
-  <!-- Sync Canonical & OG Meta Tags from SITE_CONFIG.HUB_URL -->
-  <script>
-    (function () {
-      var base = (window.SITE_CONFIG && window.SITE_CONFIG.HUB_URL) || "https://esam-haraz.github.io/hub/";
-      if (!base.endsWith("/")) base += "/";
-      var canonical = document.getElementById("meta-canonical");
-      var ogUrl = document.getElementById("meta-og-url");
-      var ogImg = document.getElementById("meta-og-image");
-      var twImg = document.getElementById("meta-twitter-image");
-      if (canonical) canonical.setAttribute("href", base);
-      if (ogUrl) ogUrl.setAttribute("content", base);
-      if (ogImg) ogImg.setAttribute("content", base + "assets/og-cover.png");
-      if (twImg) twImg.setAttribute("content", base + "assets/og-cover.png");
-    })();
-  </script>
 
   <!-- Inline Vector Favicon (Calm Cyan #62C8D3) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='12' fill='%23070C0E' stroke='%2362C8D3' stroke-width='3'/%3E%3Crect x='14' y='18' width='22' height='6' rx='3' fill='%2362C8D3'/%3E%3Crect x='14' y='29' width='36' height='6' rx='3' fill='%2362C8D3'/%3E%3Crect x='14' y='40' width='28' height='6' rx='3' fill='%2362C8D3'/%3E%3C/svg%3E">
@@ -130,9 +115,9 @@
         <span>Services Hub</span>
       </a>
       <span class="ds-mini-edge" aria-hidden="true"></span>
-      <a href="https://esam-haraz.github.io/AutoDeploy/" class="ds-mini-node">
+      <a href="https://esam-haraz.github.io/Desktop-Tools/" class="ds-mini-node">
         <span class="ds-mini-dot" aria-hidden="true"></span>
-        <span>AutoDeploy</span>
+        <span>Desktop Tools</span>
       </a>
       <span class="ds-mini-edge" aria-hidden="true"></span>
       <a href="https://esam-haraz.github.io/Data-Analysis/" class="ds-mini-node">
@@ -205,8 +190,8 @@
           <span>Services Hub</span>
           <span aria-hidden="true">●</span>
         </a>
-        <a href="https://esam-haraz.github.io/AutoDeploy/" class="hub-drawer-link">
-          <span>AutoDeploy</span>
+        <a href="https://esam-haraz.github.io/Desktop-Tools/" class="hub-drawer-link">
+          <span>Desktop Tools</span>
           <span aria-hidden="true">↗</span>
         </a>
         <a href="https://esam-haraz.github.io/Data-Analysis/" class="hub-drawer-link">
@@ -503,10 +488,10 @@
                 <span class="ds-chip">Standalone .EXE</span>
               </div>
             </div>
-            <a href="https://esam-haraz.github.io/AutoDeploy/"
+            <a href="https://esam-haraz.github.io/Desktop-Tools/"
                class="hub-circle-btn"
                data-i18n-aria="srv1LinkAria"
-               aria-label="Explore AutoDeploy Windows tool">
+               aria-label="Explore Desktop Tools">
               ↗
             </a>
           </div>
@@ -777,7 +762,7 @@
         </div>
 
         <div class="ds-footer-links">
-          <a href="https://esam-haraz.github.io/AutoDeploy/" class="ds-btn ds-btn-secondary">AutoDeploy ↗</a>
+          <a href="https://esam-haraz.github.io/Desktop-Tools/" class="ds-btn ds-btn-secondary">Desktop Tools ↗</a>
           <a href="https://esam-haraz.github.io/Data-Analysis/" class="ds-btn ds-btn-secondary">Data Analysis ↗</a>
           <a href="https://github.com/Esam-Haraz" target="_blank" rel="noopener noreferrer" class="ds-btn ds-btn-secondary">GitHub ↗</a>
           <a href="https://www.linkedin.com/in/esam-haraz-459925402" target="_blank" rel="noopener noreferrer" class="ds-btn ds-btn-secondary">LinkedIn ↗</a>
