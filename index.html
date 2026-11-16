@@ -274,11 +274,14 @@
   </section>
 
   <!-- ==========================================================================
-       MAIN CONTENT SHELL (STICKY INDEX RAIL + 4 SECTIONS)
+       MAIN CONTENT SHELL (PINNED INDEX RAIL + 4 SECTIONS)
        ========================================================================== -->
   <main id="main-content" class="hub-shell">
 
-    <!-- Sticky Desktop Sidebar Index (Fades in after Hero leaves viewport) -->
+    <!-- Grid Column Spacer for Fixed Pinned Index Rail -->
+    <div class="hub-index-spacer" aria-hidden="true"></div>
+
+    <!-- Pinned Desktop Sidebar Index (Fades in after Hero leaves viewport) -->
     <aside class="hub-index-rail" id="hub-index-rail" aria-label="Section index">
       <span class="hub-index-heading" data-i18n="indexHeading">Index</span>
       <ul class="hub-index-list">
@@ -572,7 +575,7 @@
       </section>
 
       <!-- ====================================================================
-           03. ABOUT SECTION (HONEST INTRO, VERIFIED NUMBERS & PORTRAIT/MONOGRAM)
+           03. ABOUT SECTION (HONEST INTRO, VERIFIED NUMBERS & PIPELINE VISUAL)
            ==================================================================== -->
       <section class="hub-section" id="about" aria-labelledby="about-heading">
         <h2 class="hub-section-title hub-reveal" id="about-heading" data-i18n="aboutTitle">
@@ -591,7 +594,7 @@
             <div class="hub-facts-grid">
               <div class="hub-fact-card">
                 <span class="hub-fact-val" data-i18n="fact1Val">1</span>
-                <span class="hub-fact-lbl" data-i18n="fact1Lbl">Desktop tool shipped (AutoDeploy v1.2.0)</span>
+                <span class="hub-fact-lbl" data-i18n="fact1Lbl">Desktop tool shipped</span>
               </div>
               <div class="hub-fact-card">
                 <span class="hub-fact-val" data-i18n="fact2Val">3</span>
@@ -604,19 +607,41 @@
             </div>
           </div>
 
-          <figure class="hub-portrait-card">
-            <div class="hub-portrait-media" id="hub-portrait-media">
-              <img src="./assets/portrait.webp"
-                   id="hub-portrait-img"
-                   data-i18n-alt="portraitAlt"
-                   alt="Portrait of Esam Haraz"
-                   width="400"
-                   height="500"
-                   loading="lazy">
+          <figure class="hub-visual-card">
+            <div class="hub-visual-stage" role="img" data-i18n-aria="visualStageAria" aria-label="Diagram connecting Windows utility tracks and data analysis pipelines">
+              <svg viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- Subtle Grid Frame -->
+                <rect x="12" y="12" width="256" height="256" rx="16" stroke="var(--rule-strong)" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+                <!-- Track 01: Windows Desktop Automation -->
+                <rect x="30" y="34" width="220" height="84" rx="12" fill="var(--bg-surface)" stroke="var(--rule-strong)" stroke-width="1.5"/>
+                <circle cx="48" cy="52" r="5" fill="var(--accent-deploy)"/>
+                <text x="62" y="56" fill="var(--ink)" font-family="DM Mono, monospace" font-size="11" font-weight="700">WIN // .EXE</text>
+                <rect x="44" y="70" width="192" height="10" rx="5" fill="var(--bg-sunken)" stroke="var(--rule-strong)"/>
+                <rect x="46" y="72" width="144" height="6" rx="3" fill="var(--accent-deploy)"/>
+                <rect x="44" y="90" width="128" height="8" rx="4" fill="var(--rule-strong)" opacity="0.55"/>
+
+                <!-- Connector Node Between Tracks -->
+                <line x1="140" y1="118" x2="140" y2="162" stroke="var(--accent-hub)" stroke-width="2"/>
+                <circle cx="140" cy="140" r="8" fill="var(--bg-surface)" stroke="var(--accent-hub)" stroke-width="2.5"/>
+                <circle cx="140" cy="140" r="3" fill="var(--accent-hub)"/>
+
+                <!-- Track 02: Data Analysis & Dashboards -->
+                <rect x="30" y="162" width="220" height="84" rx="12" fill="var(--bg-surface)" stroke="var(--rule-strong)" stroke-width="1.5"/>
+                <circle cx="48" cy="180" r="5" fill="var(--accent-data)"/>
+                <text x="62" y="184" fill="var(--ink)" font-family="DM Mono, monospace" font-size="11" font-weight="700">DATA // SQL · BI</text>
+
+                <!-- Mini Zero-Baseline Bars -->
+                <rect x="48" y="214" width="18" height="18" rx="4" fill="var(--accent-data)" opacity="0.5"/>
+                <rect x="74" y="204" width="18" height="28" rx="4" fill="var(--accent-data)" opacity="0.75"/>
+                <rect x="100" y="196" width="18" height="36" rx="4" fill="var(--accent-data)"/>
+                <rect x="134" y="202" width="96" height="8" rx="4" fill="var(--rule-strong)" opacity="0.7"/>
+                <rect x="134" y="218" width="68" height="8" rx="4" fill="var(--accent-hub)" opacity="0.8"/>
+              </svg>
             </div>
-            <figcaption class="hub-portrait-caption">
-              <span data-i18n="portraitCaptionName">Esam Haraz</span>
-              <span data-i18n="portraitCaptionLoc">Egypt</span>
+            <figcaption class="hub-visual-caption">
+              <span data-i18n="visualCaptionName">Esam Haraz</span>
+              <span data-i18n="visualCaptionLoc">Egypt</span>
             </figcaption>
           </figure>
         </div>
