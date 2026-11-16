@@ -1,5 +1,5 @@
 /* ============================================================================
-   SERVICES HUB — SITE-SPECIFIC TOKENS & COMPONENTS (v1.0)
+   SERVICES HUB — SITE-SPECIFIC TOKENS & COMPONENTS (v1.1)
    Author: Esam Haraz
    Path: hub/assets/hub.css
    Requires: ds.css v1.1 (loaded before hub.css, never modified)
@@ -52,6 +52,13 @@ html[data-site="hub"][data-theme="dark"] {
   --status-warn-bg: #261C06;
   --status-warn-ink: #FFD470;
   --status-err: #FF7B7B;
+}
+
+/* Subtle Architectural Dot-Grid Texture Across Page Canvas (Breaks Flat Black) */
+html[data-site="hub"] body {
+  background-image: radial-gradient(var(--rule) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: 0 0;
 }
 
 /* ----------------------------------------------------------------------------
@@ -174,7 +181,7 @@ html[data-site="hub"] .hub-desktop-controls {
   display: none;
 }
 
-/* Mobile Menu Toggle Button (< 1100px) */
+/* Mobile Menu Button (< 1100px) */
 html[data-site="hub"] .hub-mobile-menu-btn {
   display: inline-flex;
   align-items: center;
@@ -308,9 +315,9 @@ html[data-site="hub"] .hub-hero {
   justify-content: space-between;
   border-block-end: 1px solid var(--rule);
   overflow: hidden;
-  /* CSS Static Gradient Fallback When JS Is Disabled or Canvas Paused */
+  background-color: var(--bg-paper);
   background-image:
-    radial-gradient(circle at 75% 28%, rgba(98, 200, 211, 0.08), transparent 52%),
+    radial-gradient(circle at 75% 28%, rgba(98, 200, 211, 0.09), transparent 52%),
     radial-gradient(circle at 22% 72%, rgba(98, 200, 211, 0.05), transparent 48%);
 }
 
@@ -426,9 +433,7 @@ html[data-site="hub"] .hub-scroll-cue:hover {
 }
 
 /* ----------------------------------------------------------------------------
-   5. READING-DIRECTION HEADING WIPE REVEAL (H1 & H2 ONLY, NO CHAR SPLITTING)
-   - Visible by default when JS fails (.hub-reveal-ready is added by hub.js)
-   - Uses @property soft-edge mask when supported, simple opacity fade fallback
+   5. READING-DIRECTION HEADING WIPE REVEAL & SCROLL-IN FILL ITEMS
    ---------------------------------------------------------------------------- */
 html[data-site="hub"].hub-reveal-ready .hub-reveal {
   opacity: 0;
@@ -474,17 +479,30 @@ html[data-site="hub"].hub-reveal-ready .hub-reveal.is-revealed {
   }
 }
 
+/* Staggered Scroll Entrance for Cards, Service Rows & Fact Cards (Fill Token) */
+html[data-site="hub"].hub-reveal-ready .hub-stagger {
+  opacity: 0;
+  transition: opacity var(--motion-fill-dur) var(--motion-fill-ease);
+  transition-delay: var(--stagger-delay, 0ms);
+}
+
+html[data-site="hub"].hub-reveal-ready .hub-stagger.is-revealed {
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html[data-site="hub"].hub-reveal-ready .hub-reveal {
+  html[data-site="hub"].hub-reveal-ready .hub-reveal,
+  html[data-site="hub"].hub-reveal-ready .hub-stagger {
     opacity: 1 !important;
     --hub-reveal: 115% !important;
     -webkit-mask-image: none !important;
     mask-image: none !important;
+    transition-delay: 0ms !important;
   }
 }
 
 /* ----------------------------------------------------------------------------
-   6. SHELL LAYOUT WITH STICKY DESKTOP SIDEBAR INDEX (>= 1100px)
+   6. SHELL LAYOUT WITH PINNED FIXED SIDEBAR INDEX (>= 1100px)
    ---------------------------------------------------------------------------- */
 html[data-site="hub"] .hub-shell {
   position: relative;
@@ -492,6 +510,10 @@ html[data-site="hub"] .hub-shell {
   max-inline-size: var(--hub-max-w);
   margin-inline: auto;
   padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+html[data-site="hub"] .hub-index-spacer {
+  display: none;
 }
 
 html[data-site="hub"] .hub-index-rail {
@@ -506,13 +528,22 @@ html[data-site="hub"] .hub-index-rail {
     align-items: start;
   }
 
+  html[data-site="hub"] .hub-index-spacer {
+    display: block;
+    inline-size: var(--hub-index-w);
+    min-block-size: 1px;
+  }
+
+  /* Truly Pinned Fixed Sidebar Aligned With Container Inline Start */
   html[data-site="hub"] .hub-index-rail {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    position: sticky;
-    inset-block-start: calc(var(--header-h) + var(--space-6));
-    padding-block-start: var(--space-8);
+    position: fixed;
+    inset-block-start: calc(var(--header-h) + var(--space-8));
+    inset-inline-start: max(clamp(1rem, 4vw, 2.5rem), calc((100vw - var(--hub-max-w)) / 2 + clamp(1rem, 4vw, 2.5rem)));
+    inline-size: var(--hub-index-w);
+    z-index: 850;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -536,9 +567,18 @@ html[data-site="hub"] .hub-index-heading {
 }
 
 html[data-site="hub"] .hub-index-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+}
+
+html[data-site="hub"] .hub-index-list li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 html[data-site="hub"] .hub-index-link {
@@ -647,12 +687,15 @@ html[data-site="hub"] .hub-work-grid--single {
   max-inline-size: 620px;
 }
 
-/* Tilted Device Showcase Card */
+/* Tilted Device Showcase Card With Subtle Ambient Stage Backdrop */
 html[data-site="hub"] .hub-device-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  padding: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: radial-gradient(circle at 50% 34%, rgba(98, 200, 211, 0.06), transparent 68%);
 }
 
 html[data-site="hub"] .hub-device-shell {
@@ -930,7 +973,7 @@ html[data-site="hub"] .hub-circle-btn:focus-visible {
 }
 
 /* ----------------------------------------------------------------------------
-   9. ABOUT SECTION (PARAGRAPHS, FACT CARDS & PORTRAIT / EH MONOGRAM CARD)
+   9. ABOUT SECTION (PARAGRAPHS, FACT CARDS & ILLUSTRATIVE PIPELINE CARD)
    ---------------------------------------------------------------------------- */
 html[data-site="hub"] .hub-about-grid {
   display: grid;
@@ -982,58 +1025,30 @@ html[data-site="hub"] .hub-fact-lbl {
   color: var(--ink-muted);
 }
 
-html[data-site="hub"] .hub-portrait-card {
+html[data-site="hub"] .hub-visual-card {
   background-color: var(--bg-surface);
   border: 1.5px solid var(--rule-strong);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  max-inline-size: 320px;
+  max-inline-size: 340px;
 }
 
-html[data-site="hub"] .hub-portrait-media {
+html[data-site="hub"] .hub-visual-stage {
   inline-size: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 4;
   background-color: var(--bg-sunken);
+  padding: var(--space-5);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
-html[data-site="hub"] .hub-portrait-media img {
+html[data-site="hub"] .hub-visual-stage svg {
   inline-size: 100%;
   block-size: 100%;
-  object-fit: cover;
 }
 
-html[data-site="hub"] .hub-portrait-monogram {
-  inline-size: 100%;
-  block-size: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  background-color: var(--bg-sunken);
-  color: var(--ink);
-}
-
-html[data-site="hub"] .hub-portrait-initials {
-  inline-size: 84px;
-  block-size: 84px;
-  border-radius: var(--radius-lg);
-  background-color: var(--accent-hub);
-  color: var(--ink-on-accent);
-  border: 2px solid var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 800;
-}
-
-html[data-site="hub"] .hub-portrait-caption {
+html[data-site="hub"] .hub-visual-caption {
   padding: var(--space-3) var(--space-4);
   border-block-start: 1px solid var(--rule);
   font-family: var(--font-mono);
